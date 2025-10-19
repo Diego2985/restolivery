@@ -1,0 +1,61 @@
+body {
+  background-color: #fff8f0;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.home-container {
+  padding: 20px;
+}
+
+.home-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-item {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.menu-item button {
+  background-color: #ff5722;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu-item button:hover {
+  background-color: #e64a19;
+}
+
+.carrito-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.carrito-container button {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.carrito-container button:hover {
+  background: #b71c1c;
+}
