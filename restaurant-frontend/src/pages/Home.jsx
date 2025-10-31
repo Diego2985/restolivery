@@ -1,24 +1,39 @@
-// src/pages/Home.jsx
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import "./css/Home.css";
 import Menu from "../components/Menu";
 import Carrito from "../components/Carrito";
-import "./css/Home.css";
-
-const sampleProducts = [
-  { id: 1, name: "Pizza Margarita", price: 2500, image: "/images/pizza.jpg" },
-  { id: 2, name: "Hamburguesa Completa", price: 3000, image: "/images/burger.jpg" },
-  { id: 3, name: "Empanadas x6", price: 1800, image: "/images/empanadas.jpg" },
-];
 
 const Home = () => {
+  const { addToCart } = useContext(CartContext);
+
+  const productos = [
+    { id: 1, nombre: "Pizza Margarita", precio: 2500 },
+    { id: 2, nombre: "Hamburguesa Completa", precio: 3000 },
+    { id: 3, nombre: "Empanadas x6", precio: 1800 },
+  ];
+
   return (
-    <div className="home-container">
-      <h2>Menú del día 🍽️</h2>
-      <div className="home-content">
-        <Menu products={sampleProducts} />
-        <Carrito />
-      </div>
-    </div>
+    <>
+      {/* Hero Section con fondo e introducción */}
+      <section className="home-hero">
+        <div className="overlay">
+          <h1 className="hero-title">Bienvenido a Restolivery 🍽️</h1>
+          <p className="hero-subtitle">
+            Disfrutá los mejores sabores, directo a tu puerta.
+          </p>
+        </div>
+      </section>
+
+      {/* Contenido principal con menú y carrito */}
+      <main className="home-container">
+        <h2 className="home-title">Menú del día 🍽️</h2>
+        <div className="home-content">
+          <Menu productos={productos} addToCart={addToCart} />
+          <Carrito />
+        </div>
+      </main>
+    </>
   );
 };
 
