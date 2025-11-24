@@ -1,38 +1,55 @@
-import React, { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./css/Home.css";
-import Menu from "../components/Menu";
-import Carrito from "../components/Carrito";
 
 const Home = () => {
-  const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
-  const productos = [
-    { id: 1, nombre: "Pizza Margarita", precio: 2500 },
-    { id: 2, nombre: "Hamburguesa Completa", precio: 3000 },
-    { id: 3, nombre: "Empanadas x6", precio: 1800 },
+  const destacados = [
+    {
+      id: 1,
+      nombre: "Pizza Margarita",
+      img: "/images/Imagen1.jpg",
+    },
+    {
+      id: 2,
+      nombre: "Hamburguesa Completa",
+      img: "/images/Imagen2.jpg",
+    },
+    {
+      id: 3,
+      nombre: "Empanadas x6",
+      img: "/images/Imagen3.jpg",
+    },
   ];
 
   return (
     <>
-      {/* Hero Section con fondo e introducción */}
-      <section className="home-hero">
-        <div className="overlay">
-          <h1 className="hero-title">Bienvenido a Restolivery 🍽️</h1>
-          <p className="hero-subtitle">
-            Disfrutá los mejores sabores, directo a tu puerta.
-          </p>
+      {/* Hero */}
+      <section className="hero">
+        <div className="hero-content">
+          <h1>Bienvenido a RestoLivery 🍽️</h1>
+          <p>Sabores caseros, frescos y preparados al instante.</p>
         </div>
       </section>
 
-      {/* Contenido principal con menú y carrito */}
-      <main className="home-container">
-        <h2 className="home-title">Menú del día 🍽️</h2>
-        <div className="home-content">
-          <Menu productos={productos} addToCart={addToCart} />
-          <Carrito />
+      {/* Destacados */}
+      <section className="destacados">
+        <h2>Platos destacados</h2>
+
+        <div className="cards">
+          {destacados.map((item) => (
+            <div
+              key={item.id}
+              className="card"
+              onClick={() => navigate("/menu")}
+            >
+              <img src={item.img} alt={item.nombre} />
+              <h3>{item.nombre}</h3>
+            </div>
+          ))}
         </div>
-      </main>
+      </section>
     </>
   );
 };

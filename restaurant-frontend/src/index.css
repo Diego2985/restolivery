@@ -1,4 +1,6 @@
 /* index.css */
 body {
-  background-color: lightgreen !important;
+  background-color: #f5f5f5 !important;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
 }
