@@ -1,13 +1,16 @@
-// index.js
 const express = require("express");
 const cors = require("cors");
-const stripe = require("stripe")("TU_CLAVE_STRIPE"); // API KEY de Stripe
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// Ejemplo de endpoint de productos
+// Puerto dinámico para Render
+const PORT = process.env.PORT || 4000;
+
+// Endpoint de productos
 app.get("/api/menu", (req, res) => {
   res.json([
     { id: 1, name: "Pizza Margarita", price: 1200 },
@@ -15,7 +18,7 @@ app.get("/api/menu", (req, res) => {
   ]);
 });
 
-// Endpoint de pago con Stripe
+// Endpoint de pago
 app.post("/api/checkout", async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
@@ -29,13 +32,17 @@ app.post("/api/checkout", async (req, res) => {
         quantity: item.quantity,
       })),
       mode: "payment",
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      success_url: process.env.FRONTEND_URL + "/success",
+      cancel_url: process.env.FRONTEND_URL + "/cancel",
     });
+
     res.json({ url: session.url });
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-app.listen(4000, () => console.log("Backend en http://localhost:4000"));
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
+});
