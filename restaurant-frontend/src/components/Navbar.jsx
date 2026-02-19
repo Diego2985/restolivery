@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import { useCart } from "../context/CartContext";
 import { ShoppingCart } from "lucide-react";
 import "./css/Navbar.css";
-import "./css/CarritoAnimation.css"
+import "./css/Carrito.css"
 
 
 const Navbar = () => {
