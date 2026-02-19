@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_URL } from '../config';
 import { useCart } from '../context/CartContext';
 
 const CheckoutButton = () => {
@@ -11,7 +12,7 @@ const CheckoutButton = () => {
 
     try {
       // ⚡ Simulación de llamada a backend / Stripe
-      const response = await fetch('/api/checkout', {
+      const response = await fetch(`${API_URL}/api/checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: cart }),
